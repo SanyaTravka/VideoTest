@@ -1,7 +1,6 @@
-let obj = {
-    "type": "text", // text, one, many
+let obj1 = {
+    "type": "one", // text, one, many
     "question": "Сколько будет 5 * 23",
-    "answer": "115",
     "answers": [{
             "answer": "100",
             "correct": false
@@ -20,55 +19,87 @@ let obj = {
         }
     ],
 }
-
-let question = document.querySelector("h1");
-question.innerText = obj.question;
-
-let button = document.createElement("button");
-button.innerText = "Отправить";
-
-if (obj.type === "text") {
-    let answer = document.createElement("div");
-    let input = document.createElement("input");
-    input.type = "text";
-    answer.appendChild(input);
-    document.body.appendChild(answer);
-    button.onclick = function() {
-        if (document.querySelector("input").value === obj.answer) {
-            alert('Правильно!')
-        } else {
-            alert('Неправильно!')
+let obj2 = {
+    "type": "many", // text, one, many
+    "question": "Сколько будет 5 * 23",
+    "answers": [{
+            "answer": "100",
+            "correct": false
+        },
+        {
+            "answer": "80",
+            "correct": false
+        },
+        {
+            "answer": "115",
+            "correct": true
+        },
+        {
+            "answer": "120",
+            "correct": false
         }
-    }
-} else {
-    for (let i = 0; i < obj.answers.length; i++) {
+    ],
+}
+let obj3 = {
+    "type": "text", // text, one, many
+    "question": "Сколько будет 5 * 23",
+    "answer": "115"
+}
+
+function goToHtml(obj) {
+    let main = document.createElement("div");
+
+    let question = document.createElement("h1");
+    question.innerText = obj.question;
+    main.appendChild(question);
+    let button = document.createElement("button");
+    button.innerText = "Отправить";
+
+    if (obj.type === "text") {
         let answer = document.createElement("div");
         let input = document.createElement("input");
-        input.type = "radio";
-        if (obj.type === "many") {
-            input.type = "checkbox";
-        }
-        input.name = `question`;
-        input.id = obj.answers[i].correct;
+        input.type = "text";
         answer.appendChild(input);
-        let label = document.createElement("label");
-        label.innerText = obj.answers[i].answer;
-        answer.appendChild(label);
-        document.body.appendChild(answer);
-    }
-    button.onclick = function() {
-        let counter = 0;
-        let inputs = document.querySelectorAll("input");
-        for (let i = 0; i < inputs.length; i++) {
-            if (inputs[i].checked === (inputs[i].id === "true")) {
-                counter++;
+        main.appendChild(answer);
+        button.onclick = function() {
+            if (document.querySelector("input").value === obj.answer) {
+                alert('Правильно!')
+            } else {
+                alert('Неправильно!')
             }
         }
-        if (counter === inputs.length) {
-            alert('Правильно!')
-        } else {
-            alert('Неправильно!')
+    } else {
+        for (let i = 0; i < obj.answers.length; i++) {
+            let answer = document.createElement("div");
+            let input = document.createElement("input");
+            input.type = "radio";
+            if (obj.type === "many") {
+                input.type = "checkbox";
+            }
+            input.name = `question`;
+            input.id = obj.answers[i].correct;
+            answer.appendChild(input);
+            let label = document.createElement("label");
+            label.innerText = obj.answers[i].answer;
+            answer.appendChild(label);
+            main.appendChild(answer);
+        }
+        button.onclick = function() {
+            let counter = 0;
+            let inputs = document.querySelectorAll("input");
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked === (inputs[i].id === "true")) {
+                    counter++;
+                }
+            }
+            if (counter === inputs.length) {
+                alert('Правильно!')
+            } else {
+                alert('Неправильно!')
+            }
         }
     }
+    main.appendChild(button);
+    return main
 }
-document.body.appendChild(button);
+console.log(goToHtml(obj1));
