@@ -94,12 +94,17 @@ function goToHtml(obj) {
             }
             if (counter === inputs.length) {
                 alert('Правильно!')
+                video.play();
+                testAppended = false;
+
             } else {
                 alert('Неправильно!')
+                video.currentTime = 0;
+                video.play();
+                testAppended = false;
             }
         }
     }
     main.appendChild(button);
     return main
 }
-console.log(goToHtml(obj1));
