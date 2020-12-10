@@ -46,6 +46,15 @@ let obj3 = {
     "answer": "115"
 }
 
+function randomString() {
+    const qwerty = "qwertyuiopasdfghjklzxcvbnm";
+    let randStr = "";
+    for (let i = 0; i < 5; i++) {
+        let idx = Math.floor(Math.random() * (25 - 0) + 0)
+        randStr = randStr + alphabet[idx];
+    }
+}
+
 function goToHtml(obj) {
     let main = document.createElement("div");
 
@@ -96,12 +105,14 @@ function goToHtml(obj) {
                 alert('Правильно!')
                 video.play();
                 testAppended = false;
+                step++;
 
             } else {
                 alert('Неправильно!')
                 video.currentTime = 0;
                 video.play();
                 testAppended = false;
+                step--;
             }
         }
     }

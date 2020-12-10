@@ -75,11 +75,12 @@ function initializeVideo() {
 }
 
 let testAppended = false;
+let step = 0;
 
 // updateTimeElapsed indicates how far through the video
 // the current playback is by updating the timeElapsed element
 function updateTimeElapsed() {
-    if (video.currentTime > 3) {
+    if (video.currentTime > 3 && step === 0) {
         if (testAppended) {;
         } else {
             testAppended = true
@@ -87,7 +88,7 @@ function updateTimeElapsed() {
             document.body.appendChild(goToHtml(obj1));
         }
     }
-    if (video.currentTime > 6) {
+    if (video.currentTime > 6 && step === 1) {
         if (testAppended) {;
         } else {
             testAppended = true
@@ -95,7 +96,7 @@ function updateTimeElapsed() {
             document.body.appendChild(goToHtml(obj2));
         }
     }
-    if (video.currentTime > 9) {
+    if (video.currentTime > 9 && step === 2) {
         if (testAppended) {;
         } else {
             testAppended = true
