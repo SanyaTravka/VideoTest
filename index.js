@@ -79,7 +79,9 @@ function goToHtml(obj) {
         }
     } else {
         for (let i = 0; i < obj.answers.length; i++) {
-            let answer = document.createElement("div");
+            let answer = document.createElement("label");
+            answer.append(obj.answers[i].answer);
+            answer.classList.add("container-input");
             let input = document.createElement("input");
             input.type = "radio";
             if (obj.type === "many") {
@@ -88,9 +90,13 @@ function goToHtml(obj) {
             input.name = `question`;
             input.id = obj.answers[i].correct;
             answer.appendChild(input);
-            let label = document.createElement("label");
-            label.innerText = obj.answers[i].answer;
-            answer.appendChild(label);
+            let span = document.createElement("span");
+            if (obj.type === "many") {
+                span.classList.add("checkmark-checkbox");
+            } else {
+                span.classList.add("checkmark");
+            }
+            answer.appendChild(span);
             main.appendChild(answer);
         }
         button.onclick = function() {
