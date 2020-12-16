@@ -85,6 +85,7 @@ function updateTimeElapsed() {
         } else {
             testAppended = true
             video.pause();
+            document.getElementById("video-container").style.display = "none";
             document.body.appendChild(goToHtml(obj1));
         }
     }
@@ -93,6 +94,7 @@ function updateTimeElapsed() {
         } else {
             testAppended = true
             video.pause();
+            document.getElementById("video-container").style.display = "none";
             document.body.appendChild(goToHtml(obj2));
         }
     }
@@ -101,6 +103,7 @@ function updateTimeElapsed() {
         } else {
             testAppended = true
             video.pause();
+            document.getElementById("video-container").style.display = "none";
             document.body.appendChild(goToHtml(obj3));
         }
     }

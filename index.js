@@ -57,7 +57,7 @@ function randomString() {
 
 function goToHtml(obj) {
     let main = document.createElement("div");
-
+    main.id = "mainQuestion"
     let question = document.createElement("h1");
     question.innerText = obj.question;
     main.appendChild(question);
@@ -109,12 +109,16 @@ function goToHtml(obj) {
             }
             if (counter === inputs.length) {
                 alert('Правильно!')
+                document.getElementById("mainQuestion").style.display = "none";
+                document.getElementById("video-container").style.display = "block";
                 video.play();
                 testAppended = false;
                 step++;
 
             } else {
                 alert('Неправильно!')
+                document.getElementById("mainQuestion").style.display = "none";
+                document.getElementById("video-container").style.display = "block";
                 video.currentTime = 0;
                 video.play();
                 testAppended = false;
